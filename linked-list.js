@@ -34,6 +34,7 @@ class LinkedList {
 
   pop() {
     this.list.pop();
+    this.list[this.list.length - 1].nextNode = null;
   }
 
   contains(value) {
@@ -61,6 +62,22 @@ class LinkedList {
     }
     return str;
   }
+
+  insertAt(value, index) {
+    if (index === 0) {
+      this.prepend(value);
+    } else if (index === this.list.length) {
+      this.append(value);
+    } else {
+      let before = this.list.slice(0, index);
+      let after = this.list.slice(index);
+      let newValue = new Node(value, after[0].value);
+
+      before[before.length - 1].nextNode = value;
+      this.list = [...before, newValue, ...after];
+      // console.log([...before, newValue, ...after]);
+    }
+  }
 }
 
 class Node {
@@ -71,24 +88,33 @@ class Node {
 }
 
 /**
- * update nextNode on #3-10
- * then do extra credit
+ * do extra credit
  */
 
 let list = new LinkedList();
-// list.append(45);
-// list.append(32);
-// list.append(12);
-// list.append(1);
-// list.append(0);
+list.append(45);
+list.append(32);
+list.append(12);
+list.append(1);
+list.append(0);
 
-list.prepend(45);
-list.prepend(32);
-list.prepend(12);
-list.prepend(1);
-list.prepend(0);
+// list.prepend(45);
+// list.prepend(32);
+// list.prepend(12);
+// list.prepend(1);
+// list.prepend(0);
 
-console.log(list.size());
-console.log(list.head());
-console.log(list.tail());
+// console.log(list.size());
+// console.log(list.head());
+// console.log(list.tail());
+// console.log(list.at(2));
+
+// list.pop();
+
+// console.log(list.contains(0));
+// console.log(list.find(0));
+
+// console.log(list.toString());
+
+// list.insertAt(7, 5);
 console.log(list);

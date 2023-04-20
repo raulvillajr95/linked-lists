@@ -2,11 +2,18 @@ class LinkedList {
   list = [];
 
   append(value) {
+    if (this.list.length >= 1) {
+      this.list[this.list.length - 1].nextNode = value;
+    }
     this.list.push(new Node(value));
   }
 
   prepend(value) {
-    this.list.unshift(new Node(value));
+    if (this.list.length >= 1) {
+      this.list.unshift(new Node(value, this.list[0].value));
+    } else {
+      this.list.unshift(new Node(value));
+    }
   }
 
   size() {
@@ -43,7 +50,17 @@ class LinkedList {
     return null;
   }
 
-  toString() {}
+  toString() {
+    let str = '';
+    for (let i = 0; i <= this.list.length; i++) {
+      if (i === this.list.length) {
+        str += 'null';
+      } else {
+        str += `( ${this.list[i].value} ) -> `;
+      }
+    }
+    return str;
+  }
 }
 
 class Node {
@@ -54,20 +71,24 @@ class Node {
 }
 
 /**
- * do #10
- *
+ * update nextNode on #3-10
  * then do extra credit
  */
 
 let list = new LinkedList();
-list.append(45);
-list.prepend(12);
-console.log(list.size(), 'size');
-console.log(list.head(), 'head');
-console.log(list.tail(), 'tail');
-console.log(list.at(0), 'at');
-list.pop();
-console.log(list.contains(45), 'contains');
-console.log(list.find(45), 'find');
+// list.append(45);
+// list.append(32);
+// list.append(12);
+// list.append(1);
+// list.append(0);
 
+list.prepend(45);
+list.prepend(32);
+list.prepend(12);
+list.prepend(1);
+list.prepend(0);
+
+console.log(list.size());
+console.log(list.head());
+console.log(list.tail());
 console.log(list);

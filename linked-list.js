@@ -75,7 +75,21 @@ class LinkedList {
 
       before[before.length - 1].nextNode = value;
       this.list = [...before, newValue, ...after];
-      // console.log([...before, newValue, ...after]);
+    }
+  }
+
+  removeAt(index) {
+    if (index === 0) {
+      this.list = this.list.slice(1);
+    } else if (index === this.list.length - 1) {
+      this.pop();
+    } else {
+      let before = this.list.slice(0, index);
+      let after = this.list.slice(index + 1);
+
+      before[before.length - 1].nextNode = after[0].value;
+
+      this.list = [...before, ...after];
     }
   }
 }
@@ -117,4 +131,5 @@ list.append(0);
 // console.log(list.toString());
 
 // list.insertAt(7, 5);
+list.removeAt(2);
 console.log(list);

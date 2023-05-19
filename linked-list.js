@@ -131,5 +131,5 @@ list.append(0);
 // console.log(list.toString());
 
 // list.insertAt(7, 5);
-list.removeAt(2);
+// list.removeAt(2);
 console.log(list);
